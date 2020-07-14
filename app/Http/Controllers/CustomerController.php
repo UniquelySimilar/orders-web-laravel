@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
+use App\Customer;
 
 class CustomerController extends Controller
 {
@@ -14,9 +14,9 @@ class CustomerController extends Controller
      */
     public function index()
     {
-        $customers = DB::select('select * from customers');
+        $customers = Customer::all();
 
-        return view('customer.index');
+        return view('customer.index')->with('customers', $customers);
     }
 
     /**
