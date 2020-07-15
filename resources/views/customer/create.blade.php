@@ -21,38 +21,48 @@
   <div class="form-group row">
     <label for="street" class="col-md-2 offset-md-2 col-form-label">Street</label>
     <div class="col-md-6">
-      <input type="text" class="form-control" id="street">
+      <input type="text" class="form-control" id="street" name="street">
     </div>
   </div>
   <div class="form-group row">
     <label for="city" class="col-md-2 offset-md-2 col-form-label">City</label>
     <div class="col-md-6">
-      <input type="text" class="form-control" id="city">
+      <input type="text" class="form-control" id="city" name="city">
     </div>
   </div>
-  <!-- INSERT STATE SELECT -->
+  <div class="form-group row">
+    <label for="state" class="col-md-2 offset-md-2 col-form-label">State</label>
+    <div class="col-md-6">
+      <select class="form-control" id="state" name="state">
+      <!-- TODO: populate options from request -->
+        <option value="Colorado" selected>Colorado</option>
+        <option value="Oklahoma">Oklahoma</option>
+        <option value="Texas">Texas</option>
+      </select>
+    </div>
+  </div>
   <div class="form-group row">
     <label for="zipcode" class="col-md-2 offset-md-2 col-form-label">Zip Code</label>
     <div class="col-md-6">
-      <input type="text" class="form-control" id="zipcode">
+      <input type="text" class="form-control" id="zipcode" name="zipcode">
     </div>
   </div>
   <div class="form-group row">
     <label for="homephone" class="col-md-2 offset-md-2 col-form-label">Home Phone</label>
     <div class="col-md-6">
-      <input type="text" class="form-control" id="homephone">
+      <input type="text" class="form-control" id="homephone" name="home_phone">
     </div>
   </div>
   <div class="form-group row">
     <label for="workphone" class="col-md-2 offset-md-2 col-form-label">Work Phone</label>
     <div class="col-md-6">
-      <input type="text" class="form-control" id="workphone">
+      <input type="text" class="form-control" id="workphone" name="work_phone">
     </div>
   </div>
   <div class="form-group row">
     <label for="email" class="col-md-2 offset-md-2 col-form-label">Email</label>
     <div class="col-md-6">
-      <input type="email" class="form-control" id="email">
+      <input type="email" class="form-control" id="email" name="email">
     </div>
   </div>
   <div class="form-group row">

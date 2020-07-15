@@ -38,7 +38,9 @@ class CustomerController extends Controller
      */
     public function store(Request $request)
     {
-        Log::debug($request);
+        //Log::debug($request);
+        // Add validation
+        Customer::create($request->all());
         return redirect()->route('customers.index');
     }
 
