@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 use App\Customer;
 
 class CustomerController extends Controller
@@ -37,7 +38,8 @@ class CustomerController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        Log::debug($request);
+        return redirect()->route('customers.index');
     }
 
     /**

@@ -3,7 +3,10 @@
 @section('title', 'Customers')
 
 @section('content')
-<h3 class="page-title">Customers</h3>
+<div class="page-title">
+  <span class="d-inline-block align-middle">Customers</span>
+  <a class="btn btn-light btn-outline-secondary" href="{{ route('customers.create') }}" role="button">Add Customer</a>
+</div>
 <table class="table table-bordered">
   <thead class="thead-light">
     <tr>

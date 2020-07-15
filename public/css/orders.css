@@ -1,3 +1,13 @@
 .page-title {
     margin-top: 1em;
+    margin-bottom: 1em;
+}
+
+.page-title span {
+    font-size: 1.5em;
+    font-weight: 500;
+}
+
+.page-title .btn {
+    margin-left: 1em;
 }
