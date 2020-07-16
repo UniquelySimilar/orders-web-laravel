@@ -8,6 +8,17 @@ use App\Customer;
 
 class CustomerController extends Controller
 {
+    protected $validationRules = [
+        'first_name'    => 'required',
+        'last_name'     => 'required',
+        'street'        => 'required',
+        'city'          => 'required',
+        'zipcode'       => 'required',
+        'home_phone'    => 'required',
+        'work_phone'    => '',
+        'email'         => 'required',
+    ];
+
     /**
      * Display a listing of the resource.
      *
@@ -39,8 +50,9 @@ class CustomerController extends Controller
     public function store(Request $request)
     {
         //Log::debug($request);
-        // Add validation
-        Customer::create($request->all());
+        $validatedData = $request->validate($this->validationRules);
+
+        Customer::create($validatedData);
         return redirect()->route('customers.index');
     }
 
