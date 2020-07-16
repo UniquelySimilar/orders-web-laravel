@@ -3,7 +3,10 @@
 @section('title', 'Add Customer')
 
 @section('content')
-<h3 class="page-title">Add Customer</h3>
+<header class="page-title">
+  <span class="title-text d-inline-block align-middle">Add Customer</span>
+  <span>&nbsp;&nbsp;(* = Required)</span>
+</header>
 <form method="post" action="{{ route('customers.store') }}">
   @csrf
   <div class="form-group row">
@@ -26,6 +29,11 @@
     </div>
     <span class="col-form-label"> *</span>
   </div>
+  @error('last_name')
+  <div class="form-group row">
+    <div class="col-md-6 offset-md-4 text-danger">{{ $message }}</div>
+  </div>
+  @enderror
 
   <div class="form-group row">
     <label for="street" class="col-md-2 offset-md-2 col-form-label">Street</label>
@@ -34,6 +42,11 @@
     </div>
     <span class="col-form-label"> *</span>
   </div>
+  @error('street')
+  <div class="form-group row">
+    <div class="col-md-6 offset-md-4 text-danger">{{ $message }}</div>
+  </div>
+  @enderror
 
   <div class="form-group row">
     <label for="city" class="col-md-2 offset-md-2 col-form-label">City</label>
@@ -42,6 +55,11 @@
     </div>
     <span class="col-form-label"> *</span>
   </div>
+  @error('city')
+  <div class="form-group row">
+    <div class="col-md-6 offset-md-4 text-danger">{{ $message }}</div>
+  </div>
+  @enderror
 
   <div class="form-group row">
     <label for="state" class="col-md-2 offset-md-2 col-form-label">State</label>
@@ -62,21 +80,36 @@
     </div>
     <span class="col-form-label"> *</span>
   </div>
+  @error('zipcode')
+  <div class="form-group row">
+    <div class="col-md-6 offset-md-4 text-danger">{{ $message }}</div>
+  </div>
+  @enderror
 
   <div class="form-group row">
     <label for="homephone" class="col-md-2 offset-md-2 col-form-label">Home Phone</label>
     <div class="col-md-6">
-      <input type="text" class="form-control" id="homephone" name="home_phone">
+      <input type="text" class="form-control" id="homephone" name="home_phone" placeholder="###-###-####">
     </div>
     <span class="col-form-label"> *</span>
   </div>
+  @error('home_phone')
+  <div class="form-group row">
+    <div class="col-md-6 offset-md-4 text-danger">{{ $message }}</div>
+  </div>
+  @enderror
 
   <div class="form-group row">
     <label for="workphone" class="col-md-2 offset-md-2 col-form-label">Work Phone</label>
     <div class="col-md-6">
-      <input type="text" class="form-control" id="workphone" name="work_phone">
+      <input type="text" class="form-control" id="workphone" name="work_phone" placeholder="###-###-####">
     </div>
   </div>
+  @error('work_phone')
+  <div class="form-group row">
+    <div class="col-md-6 offset-md-4 text-danger">{{ $message }}</div>
+  </div>
+  @enderror
 
   <div class="form-group row">
     <label for="email" class="col-md-2 offset-md-2 col-form-label">Email</label>
@@ -85,6 +118,11 @@
     </div>
     <span class="col-form-label"> *</span>
   </div>
+  @error('email')
+  <div class="form-group row">
+    <div class="col-md-6 offset-md-4 text-danger">{{ $message }}</div>
+  </div>
+  @enderror
 
   <div class="form-group row">
     <div class="col-md-6 offset-md-4">

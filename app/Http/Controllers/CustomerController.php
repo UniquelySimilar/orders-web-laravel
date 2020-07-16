@@ -9,14 +9,15 @@ use App\Customer;
 class CustomerController extends Controller
 {
     protected $validationRules = [
-        'first_name'    => 'required',
-        'last_name'     => 'required',
-        'street'        => 'required',
-        'city'          => 'required',
-        'zipcode'       => 'required',
-        'home_phone'    => 'required',
-        'work_phone'    => '',
-        'email'         => 'required',
+        'first_name'    => 'required|max:255',
+        'last_name'     => 'required|max:255',
+        'street'        => 'required|max:255',
+        'city'          => 'required|max:255',
+        'state'         => 'required|max:255',
+        'zipcode'       => 'required|max:255',
+        'home_phone'    => 'required|regex:/^[2-9]\d{2}-\d{3}-\d{4}$/',
+        'work_phone'    => 'nullable|regex:/^[2-9]\d{2}-\d{3}-\d{4}$/',
+        'email'         => 'required|unique:customers,email|max:255|email',
     ];
 
     /**
@@ -49,7 +50,7 @@ class CustomerController extends Controller
      */
     public function store(Request $request)
     {
-        //Log::debug($request);
+        Log::debug($request);
         $validatedData = $request->validate($this->validationRules);
 
         Customer::create($validatedData);
