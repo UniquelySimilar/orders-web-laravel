@@ -2,7 +2,7 @@
 
 namespace App;
 
-class GlobalVars {
+class Utils {
     public static $states = array(
         'Alabama',
         'Alaska',

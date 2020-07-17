@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 use App\Customer;
-use App\GlobalVars;
+use App\Utils;
 
 class CustomerController extends Controller
 {
@@ -40,7 +40,7 @@ class CustomerController extends Controller
      */
     public function create()
     {
-        return view('customer.create', ['states' => GlobalVars::$states]);
+        return view('customer.create', ['states' => Utils::$states]);
     }
 
     /**
@@ -76,9 +76,9 @@ class CustomerController extends Controller
      */
     public function edit($id)
     {
-        $customer = Customer::find(1);
+        $customer = Customer::find($id);
 
-        return view('customer.create', ['customer', $customer]);
+        return view('customer.edit', ['customer' => $customer, 'states' => Utils::$states]);
     }
 
     /**
