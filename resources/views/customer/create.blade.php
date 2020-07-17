@@ -12,7 +12,7 @@
   <div class="form-group row">
     <label for="firstname" class="col-md-2 offset-md-2 col-form-label">First Name</label>
     <div class="col-md-6">
-      <input type="text" class="form-control" id="firstname" name="first_name">
+      <input type="text" class="form-control" id="firstname" name="first_name" value="{{ old('first_name') }}">
     </div>
     <span class="col-form-label"> *</span>
   </div>
@@ -25,7 +25,7 @@
   <div class="form-group row">
     <label for="lastname" class="col-md-2 offset-md-2 col-form-label">Last Name</label>
     <div class="col-md-6">
-      <input type="text" class="form-control" id="lastname" name="last_name">
+      <input type="text" class="form-control" id="lastname" name="last_name" value="{{ old('last_name') }}">
     </div>
     <span class="col-form-label"> *</span>
   </div>
@@ -38,7 +38,7 @@
   <div class="form-group row">
     <label for="street" class="col-md-2 offset-md-2 col-form-label">Street</label>
     <div class="col-md-6">
-      <input type="text" class="form-control" id="street" name="street">
+      <input type="text" class="form-control" id="street" name="street" value="{{ old('street') }}">
     </div>
     <span class="col-form-label"> *</span>
   </div>
@@ -51,7 +51,7 @@
   <div class="form-group row">
     <label for="city" class="col-md-2 offset-md-2 col-form-label">City</label>
     <div class="col-md-6">
-      <input type="text" class="form-control" id="city" name="city">
+      <input type="text" class="form-control" id="city" name="city" value="{{ old('city') }}">
     </div>
     <span class="col-form-label"> *</span>
   </div>
@@ -64,11 +64,14 @@
   <div class="form-group row">
     <label for="state" class="col-md-2 offset-md-2 col-form-label">State</label>
     <div class="col-md-6">
+      @php
+        $selectedState = 'Colorado';
+        if ( !is_null(old('state')) ) $selectedState = old('state');
+      @endphp
       <select class="form-control" id="state" name="state">
-      <!-- TODO: populate options from request -->
-        <option value="Colorado" selected>Colorado</option>
-        <option value="Oklahoma">Oklahoma</option>
-        <option value="Texas">Texas</option>
+        @foreach($states as $key => $value)
+          <option value="{{ $value }}" {{ $value == $selectedState ? 'selected' : '' }}>{{ $value }}</option>
+        @endforeach
       </select>
     </div>
   </div>
@@ -76,7 +79,7 @@
   <div class="form-group row">
     <label for="zipcode" class="col-md-2 offset-md-2 col-form-label">Zip Code</label>
     <div class="col-md-6">
-      <input type="text" class="form-control" id="zipcode" name="zipcode">
+      <input type="text" class="form-control" id="zipcode" name="zipcode" value="{{ old('zipcode') }}">
     </div>
     <span class="col-form-label"> *</span>
   </div>
@@ -89,7 +92,7 @@
   <div class="form-group row">
     <label for="homephone" class="col-md-2 offset-md-2 col-form-label">Home Phone</label>
     <div class="col-md-6">
-      <input type="text" class="form-control" id="homephone" name="home_phone" placeholder="###-###-####">
+      <input type="text" class="form-control" id="homephone" name="home_phone" value="{{ old('home_phone') }}" placeholder="###-###-####">
     </div>
     <span class="col-form-label"> *</span>
   </div>
@@ -102,7 +105,7 @@
   <div class="form-group row">
     <label for="workphone" class="col-md-2 offset-md-2 col-form-label">Work Phone</label>
     <div class="col-md-6">
-      <input type="text" class="form-control" id="workphone" name="work_phone" placeholder="###-###-####">
+      <input type="text" class="form-control" id="workphone" name="work_phone" value="{{ old('work_phone') }}" placeholder="###-###-####">
     </div>
   </div>
   @error('work_phone')
@@ -114,7 +117,7 @@
   <div class="form-group row">
     <label for="email" class="col-md-2 offset-md-2 col-form-label">Email</label>
     <div class="col-md-6">
-      <input type="email" class="form-control" id="email" name="email">
+      <input type="email" class="form-control" id="email" name="email" value="{{ old('email') }}">
     </div>
     <span class="col-form-label"> *</span>
   </div>

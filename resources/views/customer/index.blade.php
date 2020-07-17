@@ -14,6 +14,7 @@
       <th>FIRST NAME</th>
       <th>CITY</th>
       <th>STATE</th>
+      <th></th>
     </tr>
   </thead>
   <tbody>
@@ -23,6 +24,9 @@
       <td>{{ $customer->first_name }}</td>
       <td>{{ $customer->city }}</td>
       <td>{{ $customer->state }}</td>
+      <td>
+        <a href="{{ route('customers.edit', ['customer' => $customer->id]) }}" role="button">Edit</a>
+      </td>
     </tr>
     @endforeach
   </tbody>

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 use App\Customer;
+use App\GlobalVars;
 
 class CustomerController extends Controller
 {
@@ -39,7 +40,7 @@ class CustomerController extends Controller
      */
     public function create()
     {
-        return view('customer.create');
+        return view('customer.create', ['states' => GlobalVars::$states]);
     }
 
     /**
@@ -50,7 +51,6 @@ class CustomerController extends Controller
      */
     public function store(Request $request)
     {
-        Log::debug($request);
         $validatedData = $request->validate($this->validationRules);
 
         Customer::create($validatedData);
@@ -65,7 +65,7 @@ class CustomerController extends Controller
      */
     public function show($id)
     {
-        //
+        Log::debug('CustomerController->show()');
     }
 
     /**
@@ -76,7 +76,9 @@ class CustomerController extends Controller
      */
     public function edit($id)
     {
-        //
+        $customer = Customer::find(1);
+
+        return view('customer.create', ['customer', $customer]);
     }
 
     /**
