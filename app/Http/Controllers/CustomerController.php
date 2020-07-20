@@ -18,7 +18,7 @@ class CustomerController extends Controller
         'zipcode'       => 'required|max:255',
         'home_phone'    => 'required|regex:/^[2-9]\d{2}-\d{3}-\d{4}$/',
         'work_phone'    => 'nullable|regex:/^[2-9]\d{2}-\d{3}-\d{4}$/',
-        'email'         => 'required|unique:customers,email|max:255|email',
+        //'email'         => 'required|max:255|email|unique:customers,email',
     ];
 
     /**
@@ -51,6 +51,8 @@ class CustomerController extends Controller
      */
     public function store(Request $request)
     {
+        // Add email rule for new Customer
+        $this->validationRules['email'] = 'required|max:255|email|unique:customers,email';
         $validatedData = $request->validate($this->validationRules);
 
         Customer::create($validatedData);
@@ -90,6 +92,8 @@ class CustomerController extends Controller
      */
     public function update(Request $request, $id)
     {
+        // Add email rule for existing Customer
+        $this->validationRules['email'] = 'required|max:255|email|unique:customers,email,' . $id;
         $validatedData = $request->validate($this->validationRules);
 
         $customer = Customer::find($id);
