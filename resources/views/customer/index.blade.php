@@ -3,6 +3,7 @@
 @section('title', 'Customers')
 
 @section('content')
+<div class="container">
 <header class="page-title">
   <span class="title-text d-inline-block align-middle">Customers</span>
   <a class="btn btn-light btn-outline-secondary" href="{{ route('customers.create') }}" role="button">Add Customer</a>
@@ -31,4 +32,5 @@
     @endforeach
   </tbody>
 </table>
+</div>
 @endsection

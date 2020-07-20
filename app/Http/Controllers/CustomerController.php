@@ -9,6 +9,16 @@ use App\Utils;
 
 class CustomerController extends Controller
 {
+    /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     protected $validationRules = [
         'first_name'    => 'required|max:255',
         'last_name'     => 'required|max:255',
@@ -18,7 +28,6 @@ class CustomerController extends Controller
         'zipcode'       => 'required|max:255',
         'home_phone'    => 'required|regex:/^[2-9]\d{2}-\d{3}-\d{4}$/',
         'work_phone'    => 'nullable|regex:/^[2-9]\d{2}-\d{3}-\d{4}$/',
-        //'email'         => 'required|max:255|email|unique:customers,email',
     ];
 
     /**

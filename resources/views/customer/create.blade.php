@@ -3,6 +3,7 @@
 @section('title', 'Add Customer')
 
 @section('content')
+<div class="container">
 <header class="page-title">
   <span class="title-text d-inline-block align-middle">Add Customer</span>
   <span>&nbsp;&nbsp;(* = Required)</span>
@@ -11,4 +12,5 @@
   @csrf
   @include('customer.form-inputs')
 </form>
+</div>
 @endsection
