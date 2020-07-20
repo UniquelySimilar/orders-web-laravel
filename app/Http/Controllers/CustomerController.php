@@ -90,7 +90,12 @@ class CustomerController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $validatedData = $request->validate($this->validationRules);
+
+        $customer = Customer::find($id);
+        $customer->fill($validatedData)->save();
+
+        return redirect()->route('customers.index');
     }
 
     /**

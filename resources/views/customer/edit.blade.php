@@ -7,7 +7,7 @@
   <span class="title-text d-inline-block align-middle">Edit Customer</span>
   <span>&nbsp;&nbsp;(* = Required)</span>
 </header>
-<form method="post" action="{{ route('customers.store') }}">
+<form method="post" action="{{ route('customers.update', ['customer' => $customer->id]) }}">
   @csrf
   @method('PUT')
   @include('customer.form-inputs')

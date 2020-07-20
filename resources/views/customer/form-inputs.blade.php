@@ -1,12 +1,8 @@
   <div class="form-group row">
     <label for="firstname" class="col-md-2 offset-md-2 col-form-label">First Name</label>
     <div class="col-md-6">
-      @php
-        $value = '';
-        if (!is_null(old('first_name'))) { $value = old('first_name'); }
-        else if (isset($customer)) { $value = $customer->first_name; }
-      @endphp
-      <input type="text" class="form-control" id="firstname" name="first_name" value="{{ $value }}">
+      <input type="text" class="form-control" id="firstname" name="first_name"
+        value="{{ old('first_name', isset($customer) ? $customer->first_name : '') }}">
     </div>
     <span class="col-form-label"> *</span>
   </div>
@@ -19,12 +15,8 @@
   <div class="form-group row">
     <label for="lastname" class="col-md-2 offset-md-2 col-form-label">Last Name</label>
     <div class="col-md-6">
-      @php
-        $value = '';
-        if (!is_null(old('last_name'))) { $value = old('last_name'); }
-        else if (isset($customer)) { $value = $customer->last_name; }
-      @endphp
-      <input type="text" class="form-control" id="lastname" name="last_name" value="{{ $value }}">
+      <input type="text" class="form-control" id="lastname" name="last_name"
+        value="{{ old('last_name', isset($customer) ? $customer->last_name : '') }}">
     </div>
     <span class="col-form-label"> *</span>
   </div>
@@ -37,12 +29,8 @@
   <div class="form-group row">
     <label for="street" class="col-md-2 offset-md-2 col-form-label">Street</label>
     <div class="col-md-6">
-      @php
-        $value = '';
-        if (!is_null(old('street'))) { $value = old('street'); }
-        else if (isset($customer)) { $value = $customer->street; }
-      @endphp
-      <input type="text" class="form-control" id="street" name="street" value="{{ $value }}">
+      <input type="text" class="form-control" id="street" name="street"
+        value="{{ old('street', isset($customer) ? $customer->street : '') }}">
     </div>
     <span class="col-form-label"> *</span>
   </div>
@@ -55,12 +43,8 @@
   <div class="form-group row">
     <label for="city" class="col-md-2 offset-md-2 col-form-label">City</label>
     <div class="col-md-6">
-      @php
-        $value = '';
-        if (!is_null(old('city'))) { $value = old('city'); }
-        else if (isset($customer)) { $value = $customer->city; }
-      @endphp
-      <input type="text" class="form-control" id="city" name="city" value="{{ $value }}">
+      <input type="text" class="form-control" id="city" name="city"
+        value="{{ old('city', isset($customer) ? $customer->city : '') }}">
     </div>
     <span class="col-form-label"> *</span>
   </div>
@@ -74,9 +58,7 @@
     <label for="state" class="col-md-2 offset-md-2 col-form-label">State</label>
     <div class="col-md-6">
       @php
-        $selectedState = 'Colorado';
-        if (!is_null(old('state'))) { $selectedState = old('state'); }
-        else if (isset($customer)) { $selectedState = $customer->state; }
+        $selectedState = old('state', isset($customer) ? $customer->state : 'Colorado')
       @endphp
       <select class="form-control" id="state" name="state">
         @foreach($states as $key => $value)
@@ -89,12 +71,8 @@
   <div class="form-group row">
     <label for="zipcode" class="col-md-2 offset-md-2 col-form-label">Zip Code</label>
     <div class="col-md-6">
-      @php
-        $value = '';
-        if (!is_null(old('zipcode'))) { $value = old('zipcode'); }
-        else if (isset($customer)) { $value = $customer->zipcode; }
-      @endphp
-      <input type="text" class="form-control" id="zipcode" name="zipcode" value="{{ $value }}">
+      <input type="text" class="form-control" id="zipcode" name="zipcode"
+        value="{{ old('zipcode', isset($customer) ? $customer->zipcode : '') }}">
     </div>
     <span class="col-form-label"> *</span>
   </div>
@@ -107,12 +85,8 @@
   <div class="form-group row">
     <label for="homephone" class="col-md-2 offset-md-2 col-form-label">Home Phone</label>
     <div class="col-md-6">
-      @php
-        $value = '';
-        if (!is_null(old('home_phone'))) { $value = old('home_phone'); }
-        else if (isset($customer)) { $value = $customer->home_phone; }
-      @endphp
-      <input type="text" class="form-control" id="homephone" name="home_phone" value="{{ $value }}" placeholder="###-###-####">
+      <input type="text" class="form-control" id="homephone" name="home_phone"
+        value="{{ old('home_phone', isset($customer) ? $customer->home_phone : '') }}" placeholder="###-###-####">
     </div>
     <span class="col-form-label"> *</span>
   </div>
@@ -125,12 +99,8 @@
   <div class="form-group row">
     <label for="workphone" class="col-md-2 offset-md-2 col-form-label">Work Phone</label>
     <div class="col-md-6">
-      @php
-        $value = '';
-        if (!is_null(old('work_phone'))) { $value = old('work_phone'); }
-        else if (isset($customer)) { $value = $customer->work_phone; }
-      @endphp
-      <input type="text" class="form-control" id="workphone" name="work_phone" value="{{ $value }}" placeholder="###-###-####">
+      <input type="text" class="form-control" id="workphone" name="work_phone"
+        value="{{ old('work_phone', isset($customer) ? $customer->work_phone : '') }}" placeholder="###-###-####">
     </div>
   </div>
   @error('work_phone')
@@ -142,12 +112,8 @@
   <div class="form-group row">
     <label for="email" class="col-md-2 offset-md-2 col-form-label">Email</label>
     <div class="col-md-6">
-      @php
-        $value = '';
-        if (!is_null(old('email'))) { $value = old('email'); }
-        else if (isset($customer)) { $value = $customer->email; }
-      @endphp
-      <input type="email" class="form-control" id="email" name="email" value="{{ $value }}">
+      <input type="email" class="form-control" id="email" name="email"
+        value="{{ old('email', isset($customer) ? $customer->email : '') }}">
     </div>
     <span class="col-form-label"> *</span>
   </div>
