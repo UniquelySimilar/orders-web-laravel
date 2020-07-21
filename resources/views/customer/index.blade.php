@@ -16,6 +16,7 @@
       <th>CITY</th>
       <th>STATE</th>
       <th></th>
+      <th></th>
     </tr>
   </thead>
   <tbody>
@@ -26,11 +27,21 @@
       <td>{{ $customer->city }}</td>
       <td>{{ $customer->state }}</td>
       <td>
-        <a href="{{ route('customers.edit', ['customer' => $customer->id]) }}" role="button">Edit</a>
+        <a href="{{ route('customers.edit', ['customer' => $customer->id]) }}">Edit</a>
+      </td>
+      <td>
       </td>
     </tr>
     @endforeach
   </tbody>
 </table>
 </div>
+<example-component></example-component>
+<modal-component @close="showModal = false">
+  <!--
+    you can use custom content here to overwrite
+    default content
+  -->
+  <h3 slot="header">custom header</h3>
+</modal-component>
 @endsection
