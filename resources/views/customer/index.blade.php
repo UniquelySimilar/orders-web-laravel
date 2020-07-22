@@ -30,18 +30,12 @@
         <a href="{{ route('customers.edit', ['customer' => $customer->id]) }}">Edit</a>
       </td>
       <td>
+        <delete-link></delete-link>
       </td>
     </tr>
     @endforeach
   </tbody>
 </table>
 </div>
-<example-component></example-component>
-<modal-component @close="showModal = false">
-  <!--
-    you can use custom content here to overwrite
-    default content
-  -->
-  <h3 slot="header">custom header</h3>
-</modal-component>
+<delete-modal v-bind:show-modal="showModal"></delete-modal>
 @endsection

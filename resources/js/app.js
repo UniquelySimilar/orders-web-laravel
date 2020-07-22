@@ -19,10 +19,8 @@ window.Vue = require('vue');
 // const files = require.context('./', true, /\.vue$/i)
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
 
-// Vue.component('example-component', require('./components/ExampleComponent.vue').default);
-// Vue.component('modal-component', require('./components/ModalComponent.vue').default);
-import ExampleComponent from './components/ExampleComponent.vue';
-import ModalComponent from './components/ModalComponent.vue';
+import DeleteLink from './components/DeleteLink.vue';
+import DeleteModal from './components/DeleteModal.vue';
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
@@ -33,7 +31,7 @@ import ModalComponent from './components/ModalComponent.vue';
 const app = new Vue({
     el: '#app',
     components: {
-        'example-component': ExampleComponent,
-        'modal-component': ModalComponent
-    }
+        'delete-link': DeleteLink,
+        'delete-modal': DeleteModal
+    },
 });
