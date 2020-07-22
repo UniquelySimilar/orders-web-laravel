@@ -30,7 +30,8 @@
         <a href="{{ route('customers.edit', ['customer' => $customer->id]) }}">Edit</a>
       </td>
       <td>
-        <delete-link></delete-link>
+        <delete-link v-bind:customerid="{{ $customer->id }}"
+          customername="{{ $customer->first_name . ' ' . $customer->last_name }}" />
       </td>
     </tr>
     @endforeach

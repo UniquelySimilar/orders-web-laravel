@@ -4,11 +4,22 @@
 
 <script>
     export default {
+        props: {
+            customerid: {
+                type: Number,
+                required: true
+            },
+            customername: {
+                type: String,
+                required: true
+            }
+        },
         methods: {
             showModal() {
                 this.$store.commit('initDeleteModal', {
                     showDeleteModal: true,
-                    deleteCustomerId: 0
+                    deleteCustomerId: this.customerid,
+                    deleteCustomerName: this.customername
                 });
             }
 

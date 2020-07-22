@@ -1913,11 +1913,22 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 /* harmony default export */ __webpack_exports__["default"] = ({
+  props: {
+    customerid: {
+      type: Number,
+      required: true
+    },
+    customername: {
+      type: String,
+      required: true
+    }
+  },
   methods: {
     showModal: function showModal() {
       this.$store.commit('initDeleteModal', {
         showDeleteModal: true,
-        deleteCustomerId: 0
+        deleteCustomerId: this.customerid,
+        deleteCustomerName: this.customername
       });
     }
   }
@@ -1958,16 +1969,23 @@ __webpack_require__.r(__webpack_exports__);
 //
 /* harmony default export */ __webpack_exports__["default"] = ({
   computed: {
-    showModal: function showModal() {
+    showDeleteModal: function showDeleteModal() {
       return this.$store.state.showDeleteModal;
+    },
+    deleteCustomerName: function deleteCustomerName() {
+      return this.$store.state.deleteCustomerName;
     }
   },
   methods: {
     closeModal: function closeModal() {
       this.$store.commit('initDeleteModal', {
         showDeleteModal: false,
-        deleteCustomerId: 0
+        deleteCustomerId: 0,
+        deleteCustomerName: ''
       });
+    },
+    deleteCustomer: function deleteCustomer() {
+      this.closeModal();
     }
   }
 });
@@ -38246,7 +38264,7 @@ var render = function() {
     "div",
     {
       staticClass: "modal",
-      class: { displaymodal: _vm.showModal },
+      class: { displaymodal: _vm.showDeleteModal },
       attrs: { tabindex: "-1", role: "dialog" }
     },
     [
@@ -38254,7 +38272,7 @@ var render = function() {
         _c("div", { staticClass: "modal-content" }, [
           _c("div", { staticClass: "modal-header" }, [
             _c("h5", { staticClass: "modal-title" }, [
-              _vm._v("Delete customer?")
+              _vm._v("Delete customer " + _vm._s(_vm.deleteCustomerName) + "?")
             ]),
             _vm._v(" "),
             _c(
@@ -38267,8 +38285,6 @@ var render = function() {
               [_c("span", { attrs: { "aria-hidden": "true" } }, [_vm._v("×")])]
             )
           ]),
-          _vm._v(" "),
-          _vm._m(0),
           _vm._v(" "),
           _c("div", { staticClass: "modal-footer" }, [
             _c(
@@ -38283,7 +38299,11 @@ var render = function() {
             _vm._v(" "),
             _c(
               "button",
-              { staticClass: "btn btn-primary", attrs: { type: "button" } },
+              {
+                staticClass: "btn btn-primary",
+                attrs: { type: "button" },
+                on: { click: _vm.deleteCustomer }
+              },
               [_vm._v("Delete")]
             )
           ])
@@ -38292,16 +38312,7 @@ var render = function() {
     ]
   )
 }
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "modal-body" }, [
-      _c("p", [_vm._v("Modal body text goes here.")])
-    ])
-  }
-]
+var staticRenderFns = []
 render._withStripped = true
 
 
@@ -52018,12 +52029,14 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_1__
 /* harmony default export */ __webpack_exports__["default"] = (new vuex__WEBPACK_IMPORTED_MODULE_1__["default"].Store({
   state: {
     showDeleteModal: false,
-    deleteCustomerId: 0
+    deleteCustomerId: 0,
+    deleteCustomerName: ''
   },
   mutations: {
     initDeleteModal: function initDeleteModal(state, payload) {
       state.showDeleteModal = payload.showDeleteModal;
       state.deleteCustomerId = payload.deleteCustomerId;
+      state.deleteCustomerName = payload.deleteCustomerName;
     }
   }
 }));
