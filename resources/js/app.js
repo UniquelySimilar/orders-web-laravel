@@ -22,6 +22,8 @@ window.Vue = require('vue');
 import DeleteLink from './components/DeleteLink.vue';
 import DeleteModal from './components/DeleteModal.vue';
 
+import store from './store/store.js'
+
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application
@@ -34,4 +36,5 @@ const app = new Vue({
         'delete-link': DeleteLink,
         'delete-modal': DeleteModal
     },
+    store
 });

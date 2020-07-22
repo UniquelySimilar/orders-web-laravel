@@ -3,8 +3,8 @@
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title">Modal title</h5>
-          <button type="button" class="close" aria-label="Close">
+          <h5 class="modal-title">Delete customer?</h5>
+          <button type="button" class="close" aria-label="Close" v-on:click="closeModal">
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
@@ -12,8 +12,8 @@
           <p>Modal body text goes here.</p>
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-secondary">Close</button>
-          <button type="button" class="btn btn-primary">Save changes</button>
+          <button type="button" class="btn btn-secondary" v-on:click="closeModal">Close</button>
+          <button type="button" class="btn btn-primary">Delete</button>
         </div>
       </div>
     </div>
@@ -22,12 +22,19 @@
 
 <script>
   export default {
-    props: {
-      showModal: {
-        type: Boolean,
-        required: true
+    computed: {
+      showModal() {
+        return this.$store.state.showDeleteModal;
       }
     },
+    methods: {
+      closeModal() {
+        this.$store.commit('initDeleteModal', {
+          showDeleteModal: false,
+          deleteCustomerId: 0
+        })
+      }
+    }
   }
 </script>
 

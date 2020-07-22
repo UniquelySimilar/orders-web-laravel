@@ -37,5 +37,5 @@
   </tbody>
 </table>
 </div>
-<delete-modal v-bind:show-modal="showModal"></delete-modal>
+<delete-modal></delete-modal>
 @endsection
