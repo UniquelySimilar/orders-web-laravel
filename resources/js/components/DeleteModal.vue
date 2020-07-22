@@ -12,8 +12,12 @@
           <p>Modal body text goes here.</p>
         </div-->
         <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" v-on:click="closeModal">Close</button>
-          <button type="button" class="btn btn-primary" v-on:click="deleteCustomer">Delete</button>
+          <button type="button" class="btn btn-secondary" v-on:click="closeModal">Cancel</button>
+          <form method="POST" v-bind:action="deleteCustomerUrl">
+            <input type="hidden" name="_method" value="DELETE">
+            <input type="hidden" name="_token" v-bind:value="getCsrf()">
+            <button type="submit" class="btn btn-primary">Delete</button>
+          </form>
         </div>
       </div>
     </div>
@@ -26,8 +30,14 @@
       showDeleteModal() {
         return this.$store.state.showDeleteModal;
       },
+      deleteCustomerId() {
+        return this.$store.state.deleteCustomerId;
+      },
       deleteCustomerName() {
         return this.$store.state.deleteCustomerName;
+      },
+      deleteCustomerUrl() {
+        return '/customers/' + this.deleteCustomerId;
       }
     },
     methods: {
@@ -38,10 +48,22 @@
           deleteCustomerName: ''
         })
       },
-      deleteCustomer() {
-        this.closeModal();
+      getCsrf() {
+        // Get the CSRF token from a meta tag in the head
+        const metas = document.getElementsByTagName('meta');
+        let metaName = 'csrf-token';
+        let retVal = '';
+
+        for (let i = 0; i < metas.length; i++) {
+          if (metas[i].getAttribute('name') === metaName) {
+            retVal =  metas[i].getAttribute('content');
+            break;
+          }
+        }
+
+        return retVal;
       }
-    }
+    },
   }
 </script>
 

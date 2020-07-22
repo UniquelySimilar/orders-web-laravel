@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Log;
 use App\Customer;
 use App\Utils;
 
@@ -76,7 +75,7 @@ class CustomerController extends Controller
      */
     public function show($id)
     {
-        Log::debug('CustomerController->show()');
+        \Log::debug('CustomerController->show()');
     }
 
     /**
@@ -119,6 +118,8 @@ class CustomerController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Customer::destroy($id);
+
+        return redirect()->route('customers.index');
     }
 }

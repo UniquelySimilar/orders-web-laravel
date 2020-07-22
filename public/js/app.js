@@ -1967,13 +1967,23 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   computed: {
     showDeleteModal: function showDeleteModal() {
       return this.$store.state.showDeleteModal;
     },
+    deleteCustomerId: function deleteCustomerId() {
+      return this.$store.state.deleteCustomerId;
+    },
     deleteCustomerName: function deleteCustomerName() {
       return this.$store.state.deleteCustomerName;
+    },
+    deleteCustomerUrl: function deleteCustomerUrl() {
+      return '/customers/' + this.deleteCustomerId;
     }
   },
   methods: {
@@ -1984,8 +1994,20 @@ __webpack_require__.r(__webpack_exports__);
         deleteCustomerName: ''
       });
     },
-    deleteCustomer: function deleteCustomer() {
-      this.closeModal();
+    getCsrf: function getCsrf() {
+      // Get the CSRF token from a meta tag in the head
+      var metas = document.getElementsByTagName('meta');
+      var metaName = 'csrf-token';
+      var retVal = '';
+
+      for (var i = 0; i < metas.length; i++) {
+        if (metas[i].getAttribute('name') === metaName) {
+          retVal = metas[i].getAttribute('content');
+          break;
+        }
+      }
+
+      return retVal;
     }
   }
 });
@@ -38294,17 +38316,28 @@ var render = function() {
                 attrs: { type: "button" },
                 on: { click: _vm.closeModal }
               },
-              [_vm._v("Close")]
+              [_vm._v("Cancel")]
             ),
             _vm._v(" "),
             _c(
-              "button",
-              {
-                staticClass: "btn btn-primary",
-                attrs: { type: "button" },
-                on: { click: _vm.deleteCustomer }
-              },
-              [_vm._v("Delete")]
+              "form",
+              { attrs: { method: "POST", action: _vm.deleteCustomerUrl } },
+              [
+                _c("input", {
+                  attrs: { type: "hidden", name: "_method", value: "DELETE" }
+                }),
+                _vm._v(" "),
+                _c("input", {
+                  attrs: { type: "hidden", name: "_token" },
+                  domProps: { value: _vm.getCsrf() }
+                }),
+                _vm._v(" "),
+                _c(
+                  "button",
+                  { staticClass: "btn btn-primary", attrs: { type: "submit" } },
+                  [_vm._v("Delete")]
+                )
+              ]
             )
           ])
         ])
