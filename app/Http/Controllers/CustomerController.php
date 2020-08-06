@@ -36,7 +36,7 @@ class CustomerController extends Controller
      */
     public function index()
     {
-        $customers = \DB::table('customers')->orderBy('last_name', 'asc')->get();
+        $customers = \DB::table('customers')->orderBy('last_name', 'asc')->paginate(10);
 
         return view('customer.index')->with('customers', $customers);
     }

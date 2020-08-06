@@ -37,6 +37,7 @@
     @endforeach
   </tbody>
 </table>
+{{ $customers->links() }}
 </div>
 <delete-modal></delete-modal>
 @endsection
